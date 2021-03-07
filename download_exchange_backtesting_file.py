@@ -29,11 +29,9 @@ async def run_exchange_history_collector(config, exchange_name, symbols, time_fr
     await collector.initialize()
     await collector.start()
 
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    main_loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(main_loop)
-    main_loop.run_until_complete(run_exchange_history_collector({}, "binance",
-                                                                ["BTC/USDT", "ETH/USDT", "LTC/USDT"],
-                                                                [TimeFrames.ONE_MINUTE, TimeFrames.FIVE_MINUTES, TimeFrames.ONE_HOUR]))
-
+    asyncio.run(run_exchange_history_collector({}, "binance",
+                                               ["BTC/USDT", "ETH/USDT", "LTC/USDT"],
+                                               [TimeFrames.ONE_MINUTE, TimeFrames.FIVE_MINUTES, TimeFrames.ONE_HOUR]))
